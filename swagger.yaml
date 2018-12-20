@@ -1,0 +1,127 @@
+---
+  swagger: "2.0"
+  info: 
+    version: "0.0.1"
+    title: "Auth Service"
+    description: "API to handle user registration and authentication"
+    termsOfService: "#"
+    contact:
+      name: "Eranga Mapa"
+    license:
+      name: "MIT"
+  schemes:
+    - "http"
+  consumes:
+    - "application/x-www-form-urlencoded"
+  produces:
+    - "application/json"
+  paths:
+
+    /register:
+      post:
+        description: "Register a user"
+        operationId: "register"
+        produces:
+          - "application/json"
+        parameters:
+          - 
+            name: "username"
+            in: "formData"
+            description: "Username of the user to be registered"
+            required: true
+            type: "string"
+          - 
+            name: "password"
+            in: "formData"
+            description: "Password of the user to be registered"
+            required: true
+            type: "string"
+        responses: 
+          "201":
+            description: "User registred successfully"
+            schema: 
+              $ref: "#/definitions/SuccessResponse"
+          "422":
+            description: "Username or password missing"
+            schema: 
+              $ref: "#/definitions/ErrorResponse"
+          "500":
+            description: "Error occourd from server"
+            schema: 
+              $ref: "#/definitions/ErrorResponse"
+                
+          default: 
+            description: "Error occoured"
+            schema: 
+              $ref: "#/definitions/ErrorResponse"
+    /login:
+      post:
+        description: "Login a user and give back jwt token"
+        operationId: "login"
+        produces:
+          - "application/json"
+        parameters:
+          - 
+            name: "username"
+            in: "formData"
+            description: "Username of the user to be registered"
+            required: true
+            type: "string"
+          - 
+            name: "password"
+            in: "formData"
+            description: "Password of the user to be registered"
+            required: true
+            type: "string"
+        responses: 
+          "200":
+            description: "Authenticated Successfully"
+            schema: 
+              $ref: "#/definitions/LoginSuccessResponse"
+          "403":
+            description: "Incorrect username or password"
+            schema: 
+              $ref: "#/definitions/ErrorResponse"
+          "500":
+            description: "Error occourd from server"
+            schema: 
+              $ref: "#/definitions/ErrorResponse"
+                
+          default: 
+            description: "Error occoured"
+            schema: 
+              $ref: "#/definitions/ErrorResponse"
+  definitions:
+    SuccessResponse:
+      type: "object"
+      required: 
+        - "success"
+        - "message"
+      properties: 
+        success: 
+          type: "string"
+        message: 
+          type: "string"
+    LoginSuccessResponse:
+      type: "object"
+      required: 
+        - "success"
+        - "token"
+        - "message"
+      properties: 
+        success: 
+          type: "string"
+        token: 
+          type: "string"
+        message: 
+          type: "string"
+    ErrorResponse: 
+      type: "object"
+      required: 
+        - "success"
+        - "message"
+      properties: 
+        success: 
+          type: "string"
+        message: 
+          type: "string"

@@ -1,0 +1,29 @@
+{
+  "name": "auth-service",
+  "version": "0.0.1",
+  "description": "Http service to handle auth",
+  "main": "server.js",
+  "author": "Eranga",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node server",
+    "test": "env ENV=TEST mocha tests/ --exit"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "lokijs": "^1.5.5",
+    "supertest": "^3.3.0",
+    "swagger-ui-express": "^4.0.2",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "proxyquire-2": "^1.0.7",
+    "sinon": "^7.2.2"
+  }
+}
